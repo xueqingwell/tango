@@ -5,8 +5,11 @@ from django.shortcuts import render_to_response
 from rango.forms import CategoryForm,PageForm
 from rango.models import Category,Page
 
+def encode_url(str):
+    return str.replace(' ','_')
+
 def decode_url(str):
-    pass
+    return str.replace('_',' ')
 
 def index(request):
     context = RequestContext(request)
@@ -15,7 +18,7 @@ def index(request):
     context_dict = {'categories': category_list}
     context_dict['pages']=page_list
     for category in category_list:
-        category.url = category.name.replace('_',' ')
+        category.url = category.name.replace(' ','_')
     return render_to_response('rango/index.html', context_dict, context)
 
 def about(request):
