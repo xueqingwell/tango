@@ -5,6 +5,9 @@ from django.shortcuts import render_to_response
 from rango.forms import CategoryForm,PageForm
 from rango.models import Category,Page
 
+def decode_url(str):
+    pass
+
 def index(request):
     context = RequestContext(request)
     category_list = Category.objects.order_by('-likes')[0:5]
