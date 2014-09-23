@@ -14,7 +14,7 @@
     <div>
         <ul>
         {% if user.is_authenticated %}
-            <li><a href="/rango/restricated/">Restricated Page</a> </li>
+            <li><a href="/rango/restricted/">Restricated Page</a> </li>
             <li><a href="/rango/logout/">Logout</a></li>
             <li><a href="/rango/add_category">Add a New Category</a></li>
         {% else %}
@@ -24,6 +24,8 @@
             <li><a href="/rango/about/">About</a></li>
         </ul>
     </div>
+
+    <li><a href="/rango/">Home</a></li>
 
 </body>
 </html>

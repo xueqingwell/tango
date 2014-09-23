@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
-
-{% extends 'rango/base.html' %}
-
-{% block title %}Add Category{% endblock %}
-
-{% block body_block %}
-
+<head>
+    <title>Rango</title>
+</head>
+<body>
     <h1>Add a Category</h1>
     <form id="cagetory_form" method="post" action="/rango/add_category/">
         {% csrf_token %}
@@ -24,6 +21,6 @@
 
 
     </form>
-{% endblock %}
 
+</body>
 </html>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
-{% extends 'rango/base.html' %}
-{% block title %}Register{% endblock %}
-{% block body_block %}
-
+<head>
+    <title>Rango</title>
+</head>
+<body>
     <h1>Register with Rango</h1>
 
     {% if registered %}
@@ -14,14 +14,13 @@
         Rango says:<strong>Register here!</strong>
 
         <form id="user_form" method="post" action="/rango/register/" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
-            <input type="submit" name="submit" value="Register">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <input type="submit" name="submit" value="Register">
         </form>
 
     {% endif %}
 
-
-{% endblock %}
+</body>
 </html>
