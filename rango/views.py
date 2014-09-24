@@ -7,6 +7,7 @@ from rango.forms import CategoryForm,PageForm,UserForm,UserProfileForm
 from rango.models import Category,Page
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
+from  datetime import datetime
 
 def encode_url(str):
     return str.replace(' ','_')
@@ -23,7 +24,18 @@ def index(request):
     context_dict['pages']=page_list
     for category in category_list:
         category.url = category.name.replace(' ','_')
-    return render_to_response('rango/index.html', context_dict, context)
+    response = render_to_response('rango/index.html', context_dict, context)
+
+    visits = int(request.COOKIES.get('visits','0'))
+    if 'last_vist' in request.COOKIES:
+        last_vist = request.COOKIES['last_vist']
+        last_vist_time = datetime.strptime(last_vist[:19],"%Y-%m-%d %H:%M:%S")
+        if(datetime.now()-last_vist_time).seconds > 5:
+            response.set_cookie('visits',visits+1)
+            response.set_cookie('last_vsit',datetime.now())
+    else:
+        response.set_cookie('last_vist',datetime.now())
+    return response
 
 def about(request):
     context = RequestContext(request)
